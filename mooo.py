@@ -1,7 +1,7 @@
 movies=[]
 s=int(input("How many movies do u wanna add?"))
 for i in range(1,s+1):
-    s2=input("enter the name of the movies{i}:")
+    s2=input(f"enter the name of the movies-{i}:")
     movies.append(s2)
 print(movies)
 s3=input("do u wanna update? yes/no:")
