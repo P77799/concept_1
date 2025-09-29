@@ -15,5 +15,6 @@ for i in range(numbers,numbers_to+1):
     print(f"multiplication table of {i}")
 
     for  j in range(1,limits+1):
-        print(f"{i} X {j}= {numbers*j}")
+        print(f"{i} X {j}= {i*j}")
+
 
