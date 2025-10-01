@@ -1,49 +1,55 @@
-import random
-import time
+class Expense_tracker:
+    def __init__(self):
+        self.expenses = []
 
-sentences = [
-    "Python is a powerful programming language",
-    "Practice makes a man perfect",
-    "Artificial intelligence is the future",
-    "Never give up on your dreams",
-    "Typing speed improves with practice"
-]
+    def add_exp(self, amount, category):
+        expense = {"category": category, "amount": amount}
+        self.expenses.append(expense)
+        print(f"Added category: {category} - Amount: {amount}")
 
-# Pick random sentence
-ran = random.choice(sentences)
-print("⚡ Typing Speed Test ⚡")
-print("Type fast as you can!")
-print("\n👉", ran)   # show only the random sentence
+    def views_expenses(self):
+        if not self.expenses:
+            print("No expenses yet!!")
+        else:
+            i = 1
+            for ex in self.expenses:
+                print(f"{i}. {ex['category']} - Rs.{ex['amount']}")
+                i += 1
 
-s = input("Press Enter to start the timer...")
+    def total_expenses(self):
+        total = 0
+        for ex in self.expenses:
+            total += ex['amount']
+        print(f"Total spent: Rs.{total}")
 
-# Start timer
-start_time = time.time()
-typed = input("\nStart typing here:\n")
-stop_time = time.time()
 
-# Calculate time
-time_taken = stop_time - start_time
+track = Expense_tracker()
 
-# Split words
-words = ran.split()
-typed_words = typed.split()
+while True:
+    print("\n--- Expenses Tracker Menu ---")
+    print("1. Add an expense")
+    print("2. View expenses")
+    print("3. View total spent")
+    print("4. Exit")
 
-# Check correct words
-correct_words = 0
-for i in range(min(len(words), len(typed_words))):
-    if words[i] == typed_words[i]:
-        correct_words += 1
+    num = int(input("Enter num from 1-4: "))
 
-# Accuracy
-accuracy = (correct_words / len(words)) * 100
+    if num == 1:
+        amount = int(input("Enter the amount: "))
+        category = input("Enter the category: ")
+        track.add_exp(amount, category)
 
-# Words per minute
-wpm = (len(typed_words) / time_taken) * 60
+    elif num == 2:
+        track.views_expenses()
 
-# Results
-print(f"\n⌛ Time taken: {round(time_taken, 2)} seconds")
-print(f"📖 Words typed: {len(typed_words)}")
-print(f"✅ Correct words: {correct_words}")
-print(f"🎯 Accuracy: {round(accuracy, 2)}%")
-print(f"⚡ Speed: {round(wpm, 2)} WPM")
+    elif num == 3:
+        track.total_expenses()
+
+    elif num == 4:
+        print("Exiting... Goodbye!")
+        break
+
+    else:
+        print("Invalid choice! Try again.")
+
+
